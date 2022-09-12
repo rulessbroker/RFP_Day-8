@@ -2,23 +2,23 @@ package com.bridgelabz.empwage;
 
 import java.util.Random;
 
-import com.bl.empwage.EmpWageComputation;
-
 public class EmpWageComputation {
 	
 	static int wagePerHr = 20;
 	static int fullDayHr = 8;
 	static int partTimeHr = 4;
 	
+	static final int totlaWorkingHr = 100;
+	 static final int totalWorkingDay = 20;
+	 static final int isFullTime = 1;
+	 static final int isPartTime = 2;
+	 static int employeePresent = 1;
+	
 	public static void main(String[] args) {
 		
 			System.out.println("Welcome To Employee Wage Computation Program");
 			
-			CheckEmployee();
-			
-			GetWage();
-			
-			MonthlyWage();
+			GetEmpWage();
 		}
 
 //Employee Wage
@@ -82,5 +82,49 @@ public class EmpWageComputation {
 		int monthlyWage = monthlyDays * EmpWageComputation.DailyWage();
 		System.out.println("Monthly wage of employee is = " +monthlyWage);
 		return (monthlyWage);
+	}
+	
+	public static int GetEmpWage() {
+		
+        int dailyWage = 1;
+        int day = 1;
+        int workingHours = 0;
+        int totalWage = 0;
+        
+        while (day <= totalWorkingDay && workingHours < totalWorkingDay) {
+            int empRandom = (int) Math.floor(Math.random() * 10) % 3;
+            
+            switch (empRandom) {
+            
+                case isFullTime :
+                    System.out.println("Employee is present Full time");
+                    employeePresent = 20;
+                    dailyWage = wagePerHr * fullDayHr;
+                    workingHours += fullDayHr;
+                    break;
+                    
+                case isPartTime :
+                    System.out.println("Employee is present Part time");
+                    employeePresent = 20;
+                    dailyWage = wagePerHr * wagePerHr;
+                    workingHours += partTimeHr;
+                    break;
+                    
+                default:
+                    System.out.println("Employee is absent");
+            }
+
+            System.out.println("Daily Wage for #" + day + "=>" + dailyWage);
+            totalWage+=dailyWage;
+            day++;
+
+        }
+
+        System.out.println("Total Working hours => " +workingHours);
+        System.out.println("Total Wage => " +totalWage);
+        System.out.println("Total Days =>" +day);
+    
+return 0;
+      
 	}
 }
